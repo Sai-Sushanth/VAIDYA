@@ -52,25 +52,8 @@ void draw3(void) {
   u8g.print("SO PLEASE KEEP CALM ");
 }
 
-void setup() 
-{
- head.attach(2);        //attach servos to pins
- lhand.attach(3);
- rhand.attach(4);
- tmrpcm.speakerPin=9;   //Speaker pin 9,audio out pin is 9
- 
- Serial.begin(9600);    //initialize Serial communication
- 
- if(!SD.begin(SD_ChipSelectPin))   //this runs until SD is connected
- {
-  Serial.println("SD FAIL");
-  return; 
- }
-
-}
-void loop() 
-{
-  if(!(digitalRead(in3)))          //Chest sensor is low- Say "Hi there.."
+void hi(){
+if(!(digitalRead(in3)))          //Chest sensor is low- Say "Hi there.."
   {
    tmrpcm.play("welcome.wav");     //Playing audio saved as 'welcome.wav'
     lhand.write(2500);            //hand up- saying HI
@@ -96,6 +79,28 @@ void loop()
     delay(9000);
     
   }
+}
+
+void setup() 
+{
+ head.attach(2);        //attach servos to pins
+ lhand.attach(3);
+ rhand.attach(4);
+ tmrpcm.speakerPin=9;   //Speaker pin 9,audio out pin is 9
+ 
+ Serial.begin(9600);    //initialize Serial communication
+ 
+ if(!SD.begin(SD_ChipSelectPin))   //this runs until SD is connected
+ {
+  Serial.println("SD FAIL");
+  return; 
+ }
+
+}
+void loop() 
+{
+  
+ hi();// hi function
  
   if(!(digitalRead(in1)))       //Sensor on eye gets low play audio -"dont touch my eye"
   {
